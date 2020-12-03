@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="board">
+
+<select id="numMax" resultClass="int">
+	select nvl(max(num),0) from board
+</select>
+
+<insert id="insertData" parameterClass="com.board.BoardDTO">
+	insert into board (num, name, subject, email, content, pwd, ipAddr, hitCount, created) values 
+	(#num#, #name#, #subject#, #email#, #content#, #pwd#, #ipAddr#, 0, SYSDATE)
+</insert>
+
+<select id="dataCount" parameterClass="map" resultClass="int">
+		select nvl(count(*),0) from board where $SEARCHKEY$ like '%' || #SEARCHVALUE# ||'%'
+</select>
+
+<select id="listData" parameterClass="map" resultClass="com.board.BoardDTO">
+	select num, name, pwd, email, subject, content, ipaddr, hitcount, to_char(created, 'YYYY-MM-DD') created from 
+	(select A.num, A.name, A.pwd, A.email, A.subject, A.content, A.ipaddr, A.hitcount, A.created, ROW_NUMBER() OVER(ORDER BY NUM DESC) as RNUM from board A 
+	where $SEARCHKEY$ like '%' || #SEARCHVALUE# || '%') WHERE RNUM BETWEEN #start# and #end#
+</select>
+
+<select id="getData" parameterClass="int" resultClass="com.board.BoardDTO">
+	SELECT NUM, NAME, PWD, EMAIL, SUBJECT, CONTENT, IPADDR, HITCOUNT, TO_CHAR(CREATED, 'YYYY-MM-DD') CREATED FROM BOARD WHERE NUM = #num#
+</select>
+
+<update id="updateData" parameterClass="com.board.BoardDTO">
+	update board set name = #name# , pwd = #pwd#, email = #email#, subject = #subject#, content = #content#, ipaddr = #ipAddr# where num = #num# 
+</update>
+
+<delete id="deleteData" parameterClass="int">
+	delete board where num = #num#
+</delete>
+
+</sqlMap>

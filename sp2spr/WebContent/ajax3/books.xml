@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<books>
+	<book>
+		<title>동물의왕국</title>
+		<author>손범수</author>
+	</book>	
+	<book>
+		<title>야솝이야기</title>
+		<author>원피스</author>
+	</book>
+	<book>
+		<title>체험삶의현장</title>
+		<author>조영남</author>
+	</book>
+	<book>
+		<title>위대한 영혼 간디</title>
+		<author>이옥순</author>
+	</book>
+	<book>
+		<title>멘소래담 스프레이</title>
+		<author>멘소레담</author>
+	</book>
+</books>

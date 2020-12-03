@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="iguest2">
+
+<select id="numMax" resultClass="int">
+	SELECT NVL(MAX(NUM),0) FROM IGUEST
+</select>
+
+<insert id="insertData" parameterClass="com.iguest2.GuestDTO">
+	INSERT INTO IGUEST (NUM,NAME,EMAIL,CONTENT,IPADDR,CREATED) VALUES (#num#,#name#,#email#,#content#,#ipAddr#,SYSDATE)
+</insert>
+
+<delete id="deleteData" parameterClass="int">
+	DELETE IGUEST WHERE NUM = #num#
+</delete>
+
+<select id="dataCount" resultClass="int">
+	SELECT NVL(COUNT(*),0) FROM IGUEST
+</select>
+
+<select id="listData" parameterClass="map" resultClass="com.iguest2.GuestDTO">
+	select num,name,email,content,ipaddr, to_char(created,'YYYY-MM-DD') created from 
+	(select A.num, A.name, A.email, A.content, A.ipaddr, A.created, ROW_NUMBER() over(order by created desc) rnum from iguest A)
+	where rnum between #start# and #end#
+</select>
+
+</sqlMap>

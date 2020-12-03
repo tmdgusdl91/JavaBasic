@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	var count = 0;
+	function addItem(){
+		count++;
+		var newItemE = document.createElement("div");
+		newItemE.setAttribute("id","item_"+count);
+		var html = "new! ["+count+"]";
+		html+="<input type=\"button\" value=\"삭제\" onclick=\"removeItem('item_"+count+"');\"/>";
+		/*
+			<div id="item_n">
+			new[n] <input type="button" value="삭제" onlclick="removeItem('item_n');"/>
+			</div>
+		*/
+		html+="</div>";
+		
+		newItemE.innerHTML = html;
+		var itemListDiv = document.getElementById("itemList");
+		itemListDiv.appendChild(newItemE);
+	}
+
+	
+	function removeItem(itemId){
+		var removeItem = document.getElementById(itemId);
+		removeItem.parentNode.removeChild(removeItem);
+	}
+</script>
+
+</head>
+<body>
+
+<h1>HTML DOM을 이용한 화면 변경</h1>
+<hr/><br/>
+<input type="button" value="추가" onclick="addItem()"/>
+
+<div id="itemList"></div>
+
+</body>
+</html>

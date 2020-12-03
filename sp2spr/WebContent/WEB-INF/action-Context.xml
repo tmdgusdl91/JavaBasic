@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+		
+		  <!-- 스프링이 객체를 생성함 -->
+  <bean id="boardAction" class="com.board.BoardAction" scope="prototype"/>
+
+		  <!-- 스프링이 객체를 생성함 -->
+  <bean id="GuestAction" class="com.iguest.GuestAction" scope="prototype"/>  
+  
+		  <!-- 스프링이 객체를 생성함 -->
+  <bean id="GuestAction2" class="com.iguest2.GuestAction" scope="prototype"/>  
+  
+</beans>  
